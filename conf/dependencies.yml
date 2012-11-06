@@ -1,0 +1,5 @@
+self: play -> i18ned 0.1
+
+require:
+    - play
+    - org.apache.poi -> poi 3.8  

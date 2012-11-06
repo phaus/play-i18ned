@@ -1,0 +1,5 @@
+# Default i18n-edit messages
+# You can specialize this file for each language.
+# For exemple, for french create a messages.fr file
+
+#i18n-edit.name=i18n-edit
