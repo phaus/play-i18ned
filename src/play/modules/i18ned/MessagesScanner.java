@@ -23,20 +23,25 @@ public class MessagesScanner {
     private static final String CONF_DIR = "conf" + File.separator;
     private static final MessageFileFilter MESSAGE_FILTER = new MessageFileFilter();
 
-    private MessagesScanner() {}
+    private MessagesScanner() {
+    }
 
     public static MessageFile[] scan() {
-        Logger.info("scanning Application: " + CONF_DIR);
+        StringBuilder sb = new StringBuilder();
+        sb.append("scanning Application: ").append(CONF_DIR).append("\n");
         String ext;
         File rootDir = new File(CONF_DIR);
         List<MessageFile> messagesList = new ArrayList<MessageFile>();
         if (rootDir.exists()) {
             for (File mFile : rootDir.listFiles(MESSAGE_FILTER)) {
+                sb.append("\tfound ").append(mFile.getName()).append("\n");
                 ext = getExtension(mFile);
                 messagesList.add(new MessageFile(mFile, ext));
             }
+            Logger.info(sb.toString());
             return messagesList.toArray(new MessageFile[messagesList.size()]);
         }
+        Logger.info(sb.toString());
         return new MessageFile[0];
     }
 

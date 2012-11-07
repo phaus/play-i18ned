@@ -50,10 +50,12 @@ public class Importer {
 
     public void write() {
         int langId;
+        StringBuilder sb = new StringBuilder("writing messages:").append("\n");
         BufferedWriter writer;
         try {
             for (MessageFile mf : MessagesScanner.scan()) {
                 langId = headerMapping.get(mf.language);
+                sb.append("\t").append("writing file: ").append(mf.file.getName()).append("\n");
                 writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(mf.file.getAbsolutePath()), "UTF-8"));
                 messageContent.get(langId).save(writer);
                 writer.flush();
@@ -66,10 +68,11 @@ public class Importer {
         } catch (IOException ex) {
             Logger.error(ex, ex.getLocalizedMessage());
         }
-
+        Logger.info(sb.toString());
     }
 
     public void read() throws FileNotFoundException, IOException {
+        Logger.info("reading file: " + EXCEL_INPUT_FILE);
         InputStream fileInputStream = new FileInputStream(EXCEL_INPUT_FILE);
         HSSFWorkbook workbook = new HSSFWorkbook(fileInputStream);
         HSSFSheet sheet = workbook.getSheet("i18n");

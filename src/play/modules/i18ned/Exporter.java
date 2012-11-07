@@ -26,18 +26,20 @@ public class Exporter {
     private Map<Object, String> messageDescriptions = new HashMap<Object, String>();
     private Map<String, MessageProperties> messageContent = new HashMap<String, MessageProperties>();
 
-    public Exporter() {}
+    public Exporter() {
+    }
 
     public static void main(String[] args) {
         Exporter exp = new Exporter();
         exp.scan();
-        //exp.debug();
         exp.write();
     }
 
     public void scan() {
+        StringBuilder sb = new StringBuilder("\n");
         try {
             for (MessageFile mf : MessagesScanner.scan()) {
+                sb.append("\tloading Properties from ").append(mf.file.getName()).append("\n");
                 MessageProperties props = MessagesScanner.readMessageProperties(mf.file);
                 messageContent.put(mf.language, props);
                 messageKeys.addAll(props.keySet());
@@ -46,9 +48,11 @@ public class Exporter {
         } catch (IOException ex) {
             Logger.error(ex, ex.getLocalizedMessage());
         }
+        Logger.info(sb.toString());
     }
 
     public void write() {
+        Logger.info("writing file: " + EXCEL_OUTPUT_FILE);
         try {
             MessageProperty prop;
             String keyString;
