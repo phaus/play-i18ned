@@ -31,6 +31,9 @@ public class MessageProperty {
     }
 
     public String getValue() {
+        if(description != null && description.endsWith(MessageProperties.EMPTY_ENTRY)){
+            return "";
+        }
         return value;
     }
 
@@ -40,6 +43,6 @@ public class MessageProperty {
 
     @Override
     public String toString() {
-        return "\n#" + description + "\n" + key + "=" + value + "\n";
+        return "\n#" + getDescription() + "\n" + getKey() + "=" + getValue() + "\n";
     }
 }

@@ -26,8 +26,7 @@ public class Exporter {
     private Map<Object, String> messageDescriptions = new HashMap<Object, String>();
     private Map<String, MessageProperties> messageContent = new HashMap<String, MessageProperties>();
 
-    public Exporter() {
-    }
+    public Exporter() {}
 
     public static void main(String[] args) {
         Exporter exp = new Exporter();
@@ -62,8 +61,8 @@ public class Exporter {
             Sheet sheet = wb.createSheet("i18n");
             Row header, row;
             header = sheet.createRow(rowCount++);
-            header.createCell(cellCount++).setCellValue("description");
-            header.createCell(cellCount++).setCellValue("Key");
+            header.createCell(cellCount++).setCellValue(MessageProperties.HEADER_DESCRIPTION);
+            header.createCell(cellCount++).setCellValue(MessageProperties.HEADER_KEY);
             for (String lang : messageContent.keySet()) {
                 header.createCell(cellCount++).setCellValue(lang);
             }
@@ -80,7 +79,6 @@ public class Exporter {
 
                     } else {
                         row.createCell(cellCount++).setCellValue(prop.getValue());
-
                     }
                 }
             }
