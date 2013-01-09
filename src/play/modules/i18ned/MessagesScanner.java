@@ -23,8 +23,7 @@ public class MessagesScanner {
     private static final String CONF_DIR = "conf" + File.separator;
     private static final MessageFileFilter MESSAGE_FILTER = new MessageFileFilter();
 
-    private MessagesScanner() {
-    }
+    private MessagesScanner() {}
 
     public static MessageFile[] scan() {
         StringBuilder sb = new StringBuilder();

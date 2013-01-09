@@ -18,3 +18,6 @@ server.pid
 nbproject
 
 lib/
+commands.pyc
+
+sonar-project.properties
