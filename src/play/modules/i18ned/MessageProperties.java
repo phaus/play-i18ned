@@ -55,7 +55,7 @@ public class MessageProperties {
 
     }
 
-    public void save(BufferedWriter writer) {
+    public void save(BufferedWriter writer, final String prefix) {
         MessageProperty prop;
         try {
             for (Object key : properties.keySet()) {
@@ -66,6 +66,10 @@ public class MessageProperties {
                         writer.write("#");
                         writer.write(prop.getDescription());
                         writer.write("\n");
+                        if (prefix != null && !prefix.isEmpty()) {
+                            writer.write(prefix);
+                            writer.write(".");
+                        }
                         writer.write(prop.getKey());
                         writer.write("=");
                         writer.write(prop.getValue());
@@ -76,6 +80,10 @@ public class MessageProperties {
         } catch (IOException ex) {
             Logger.error(ex, ex.getLocalizedMessage());
         }
+    }
+
+    public void save(BufferedWriter writer) {
+        save(writer, null);
     }
 
     public MessageProperty getProperty(final Object key) {

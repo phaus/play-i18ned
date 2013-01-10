@@ -12,7 +12,7 @@ except ImportError:
 
 MODULE = 'i18ned'
 
-COMMANDS = ['i18ned:export', 'i18ned:import']
+COMMANDS = ['i18ned:export', 'i18ned:import', 'i18ned:pimport']
 
 def execute(**kargs):
     command = kargs.get("command")
@@ -25,6 +25,8 @@ def execute(**kargs):
     print "executing command: " + command 
     if command == 'i18ned:export':
         run(app, args, 'Exporter')
+    if command == 'i18ned:pimport':
+        run(app, args, 'PrefixedImporter')
     if command == 'i18ned:import':
         run(app, args, 'Importer')
 

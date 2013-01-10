@@ -19,10 +19,11 @@ import play.Logger;
 
 public class MessagesScanner {
 
+    public static final String CONF_DIR = "conf" + File.separator;
+    
     private final static String MESSAGES_FILENAME = "messages";
-    private static final String CONF_DIR = "conf" + File.separator;
     private static final MessageFileFilter MESSAGE_FILTER = new MessageFileFilter();
-
+    
     private MessagesScanner() {}
 
     public static MessageFile[] scan() {
