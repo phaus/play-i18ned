@@ -12,7 +12,7 @@ except ImportError:
 
 MODULE = 'i18ned'
 
-COMMANDS = ['i18ned:export', 'i18ned:import', 'i18ned:pimport']
+COMMANDS = ['i18ned:export', 'i18ned:import', 'i18ned:pimport', 'i18ned:check']
 
 def execute(**kargs):
     command = kargs.get("command")
@@ -29,7 +29,8 @@ def execute(**kargs):
         run(app, args, 'PrefixedImporter')
     if command == 'i18ned:import':
         run(app, args, 'Importer')
-
+    if command == 'i18ned:check':
+        run(app, args, 'Checker')
 def run(app, args, class_name):
     app.check()
     java_cmd = app.java_cmd(['-Xmx64m'], className='play.modules.i18ned.'+class_name, args=args)
