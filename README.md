@@ -37,10 +37,43 @@ Then install the Module
     
 Your will find the Excel File in __APP_DIR/tmp/i18n.xls__
 
-
 ## Import (Moving Changes from the Excel File into the Messages Files)
 
     play i18ned:import
+
+## Import with a Prefix
+
+Sometimes you need to export your Messages Files in a different Format.
+E.g. every Key needs to have a specific prefix ( prefix.accept=accept ) or you need to export the Files to a specific output Directory.
+For that reason there is the 
+
+    play i18ned:pimport
+
+Command. The exact syntax is:
+
+    play i18ned:pimport --prefix <prefix> --output <outputDir>
+
+## Check all Message Files for Missing/Not used Message Keys
+
+    play i18ned:check
+
+This command will scan all the Templates from the Application and will give you an output like this:
+
+
+    Results for messages:
+
+        NOT USED:
+
+            need.help
+
+        NOT FOUND:
+
+            from.partner
+                /yourapp/app/views/Application/index.html
+                /yourapp/app/views/Users/show.html
+                /yourapp/app/views/Users/show.json
+
+
 
 ## TODO
 
