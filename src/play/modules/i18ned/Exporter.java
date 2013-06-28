@@ -26,7 +26,8 @@ public class Exporter {
     private Map<Object, String> messageDescriptions = new HashMap<Object, String>();
     private Map<String, MessageProperties> messageContent = new HashMap<String, MessageProperties>();
 
-    public Exporter() {}
+    public Exporter() {
+    }
 
     public static void main(String[] args) {
         Exporter exp = new Exporter();
@@ -82,6 +83,7 @@ public class Exporter {
                     }
                 }
             }
+            sheet.createRow(rowCount++).createCell(cellCount++);
             FileOutputStream fileOut = new FileOutputStream(EXCEL_OUTPUT_FILE);
             wb.write(fileOut);
             fileOut.close();

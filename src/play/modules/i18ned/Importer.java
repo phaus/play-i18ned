@@ -105,7 +105,7 @@ public class Importer {
             StringBuilder sb = new StringBuilder(rc).append(":");
             cell1 = row.getCell(FIRST_COLUMN);
             cell2 = row.getCell(SECOND_COLUMN);
-            for (int cc = 2; cc < row.getLastCellNum(); cc++) {
+            for (int cc = 2; cc <= row.getLastCellNum(); cc++) {
                 cell3 = row.getCell(cc);
                 if (cell3 != null) {
                     description = cell1.getStringCellValue();
