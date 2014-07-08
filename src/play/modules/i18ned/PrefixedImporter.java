@@ -86,7 +86,9 @@ public class PrefixedImporter extends Importer {
 
     private String getPath(final MessageFile mf) {
         File file = new File(dbTranslationDirectory);
-        if (file.exists()) {
+        if (file.exists() && dbTranslationDirectory.startsWith("/")) {
+            return dbTranslationDirectory + File.separator + mf.file.getName();
+        } else if (file.exists()) {
             return mf.file.getAbsolutePath().replace(MessagesScanner.CONF_DIR, dbTranslationDirectory);
         } else {
             Logger.error("%s does not exists!", dbTranslationDirectory);
