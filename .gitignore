@@ -21,3 +21,6 @@ lib/
 commands.pyc
 
 sonar-project.properties
+
+build
+dist
